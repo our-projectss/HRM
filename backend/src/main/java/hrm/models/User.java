@@ -1,22 +1,25 @@
 package hrm.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.AccessLevel;
+import lombok.Data;
 
-@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Data
 @Entity
 public class User {
-	@Id
-  	private final String id;
-  	private final String username;
-  	private final String password;
-  	
-  	public User(String id, String username, String password) {
-  		this.id = id;
-  		this.username = username;
-  		this.password = password;
-  	}
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+    @NotNull
+    @Size(min=5, message="")
+    private String name;
+    @NotNull
+    @NotBlank
+    private String email;
 }

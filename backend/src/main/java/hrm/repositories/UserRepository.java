@@ -1,9 +1,6 @@
 package hrm.repositories;
 
-import org.springframework.data.repository.CrudRepository;
 import hrm.models.User;
+import org.springframework.data.repository.CrudRepository;
 
-
-public interface UserRepository extends CrudRepository<User, String> {
-	
-}
+public interface UserRepository extends CrudRepository<User, Long> {}
