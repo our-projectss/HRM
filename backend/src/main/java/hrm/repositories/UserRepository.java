@@ -1,6 +1,10 @@
 package hrm.repositories;
 
-import hrm.models.User;
+import hrm.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Long> {}
+import java.util.List;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+    List<User> findByEmail(String email);
+}

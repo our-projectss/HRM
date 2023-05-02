@@ -1,4 +1,4 @@
-package hrm.models;
+package hrm.entity;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package hrm.services;
+package hrm.api.user;
 
 public class UserService {
 }

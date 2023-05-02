@@ -1,6 +1,6 @@
-package hrm.controllers;
+package hrm.api.user;
 
-import hrm.models.User;
+import hrm.entity.User;
 import hrm.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
