@@ -17,11 +17,11 @@ public class RequestOff {
 
 	private Long user_id;
 
-	private String status;
+	private String status; // reject, approved, pending
 
 	private Long approved_by;
 
 	private Date day_off;
 
-	private String shift;
+	private String shift; // morning, afternoon, fullday
 }
