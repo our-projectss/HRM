@@ -4,8 +4,9 @@ import hrm.entity.User;
 import hrm.mvc.services.AppService;
 import hrm.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class DashboardController {
@@ -27,7 +28,9 @@ public class DashboardController {
         if (user == null) {
             return "redirect:/login";
         }
+
         model.addAttribute("users", userRepository.findAll());
+
         return "home";
     }
 }
