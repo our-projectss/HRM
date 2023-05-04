@@ -5,8 +5,7 @@ import hrm.mvc.services.AppService;
 import hrm.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Optional;
+import org.springframework.ui.Model;
 
 @Controller
 public class DashboardController {
@@ -18,7 +17,7 @@ public class DashboardController {
     }
 
     @GetMapping("/")
-    public String getLogin() {
+    public String getDashboardView(Model model) {
         Long currentAdminId = this.appService.getCurrentAdminId();
         if (currentAdminId == null) {
             return "redirect:/login";
@@ -28,9 +27,7 @@ public class DashboardController {
         if (user == null) {
             return "redirect:/login";
         }
-
-
-
+        model.addAttribute("users", userRepository.findAll());
         return "home";
     }
 }

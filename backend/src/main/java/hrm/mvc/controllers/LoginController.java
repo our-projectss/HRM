@@ -32,8 +32,7 @@ public class LoginController {
     public String login(@ModelAttribute(name="loginForm") Login login, Model m, RedirectAttributes redirectAttributes) {
         String email = login.getEmail();
         String pass = login.getPassword();
-
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findByEmailAndPasswordAndType(email, pass, "admin");
         if (user != null) {
             this.appService.setCurrentAdminId((Long)user.getId());
             return "redirect:/";

@@ -17,9 +17,15 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Size(min=5, message="")
-    private String name;
-    @NotNull
     @NotBlank
     private String email;
+    @NotNull
+    @Size(min=8, message="")
+    private String password;
+    @NotNull
+    @Size(min=5, message="")
+    private String name;
+    private String type;
+    private Long salary;
+    private String avatar;   
 }
