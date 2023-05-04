@@ -13,11 +13,15 @@ import java.sql.Date;
 public class RequestOff {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
-	private long userId;
+	private Long user_id;
+
 	private String status;
-	private long approvedBy;
-	private Date dayOff;
+
+	private Long approved_by;
+
+	private Date day_off;
+
 	private String shift;
 }
