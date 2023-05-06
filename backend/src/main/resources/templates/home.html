@@ -54,6 +54,38 @@
 						<button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
 					</form>
 				</div>
+				<div class="container_title">
+					<div ></div>
+					<div >
+						<button class="btn btn-outline-success my-2 my-sm-0 createUserBtn" type="button" data-toggle="modal" data-target="#createModal">Create User</button>
+						<div id="createModal" class="modal fade" role="dialog">
+						    <div class="modal-dialog">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h4 class="modal-title">Create User</h4>
+						                <button type="button" class="close" data-dismiss="modal">&times;</button>
+						            </div>
+						            <div class="modal-body">										
+						                <p>Are you sure you want to delete?.</p>
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						                <a href="" class = "btn btn-primary">Create User</a>										              
+						            </div>
+						        </div>
+						   	 </div>
+						</div>
+		            	<script>
+					   		 $(document).ready(function() {
+					       	 	$(".createUserBtn").click(function() {						
+					            	$("#createModal").modal();
+					       	 	});
+					    	});
+						</script>					
+					</div>
+					 
+				</div>
+				
                 <div class="main-box clearfix">
                     <div class="table-responsive">
                         <table class="table user-list">
@@ -73,28 +105,58 @@
 	                                    <span class="user-esubhead" th:text="${user.type}"></span>
 	                                </td>
 	                                <td class="text-center" th:text="${user.email}"></td>
-	                                <td class="text-center" th:text="${user.salary}">
-	                                </td>
-	                                <td  class="text-center" style="width: 20%;">
-	                                    <a href="#" class="table-link">
+	                                <td class="text-center" th:text="${user.salary}"> </td>
+	                                
+	                                
+	                                
+	                                <td  class="text-center" style="width: 20%;" >
+	                                    <a href="#" class="table-link" >
 	                                        <span class="fa-stack">
 	                                            <i class="fa fa-square fa-stack-2x"></i>
 	                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
 	                                        </span>
 	                                    </a>
-	                                    <a href="#" class="table-link">
+	                                    
+	                                    <a href="#" class="table-link" >
 	                                        <span class="fa-stack">
 	                                            <i class="fa fa-square fa-stack-2x"></i>
 	                                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 	                                        </span>
 	                                    </a>
-	                                    <a href="#" class="table-link danger">
+	                                     
+	                                    <a th:if="${user.id!=currentUser.id}" href="#" class="table-link danger" data-toggle="modal" th:data-target="'#deleteModal'+${user.id}">
 	                                        <span class="fa-stack">
 	                                            <i class="fa fa-square fa-stack-2x"></i>
 	                                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
 	                                        </span>
-	                                    </a>
+	                                    </a>	                       
 	                                </td>
+	                                <div th:id="'deleteModal'+${user.id}" class="modal fade" role="dialog">
+										    <div class="modal-dialog">
+										        <div class="modal-content">
+										            <div class="modal-header">
+										                <h4 class="modal-title">Delete Modal</h4>
+										                <button type="button" class="close" data-dismiss="modal">&times;</button>
+										            </div>
+										            <div class="modal-body">
+														<p th:text="${user.id}"></p>
+										                <p >Are you sure you want to delete?.</p>
+										            </div>
+										            <div class="modal-footer">
+										                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										                <a th:href = "@{/delete/{id}(id=${user.id})}" class = "btn btn-danger">Delete</a>										              
+										            </div>
+										        </div>
+										    </div>
+									</div>
+	                                <script>
+									    $(document).ready(function() {
+									        $(".table-link").click(function() {
+												var id="#deleteModal"+user.id;									
+									            $(id).modal();
+									        });
+									    });
+									</script>
 	                            </tr>
                             </tbody>
                         </table>
