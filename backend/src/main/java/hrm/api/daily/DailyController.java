@@ -49,18 +49,18 @@ public class DailyController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Daily createRequestOff(@RequestBody Daily daily) {
+    public Daily createDaily(@RequestBody Daily daily) {
         return dailyRepository.save(daily);
     }
 
     @PutMapping("/{id}")
-    public Map<String, String> updateRequestOff(@PathVariable Long id, @RequestBody Daily daily) {
+    public Map<String, String> updateDaily(@PathVariable Long id, @RequestBody Daily daily) {
         dailyRepository.save(daily);
         return Collections.singletonMap("message", "Edit " + id + " success");
     }
 
     @DeleteMapping("/{id}")
-    public Map<String, String> deleteRequestOff(@PathVariable Long id) {
+    public Map<String, String> deleteDaily(@PathVariable Long id) {
         Daily daily = dailyRepository.findById(id).get();
         dailyRepository.delete(daily);
         return Collections.singletonMap("message", "Delete " + id + " success");
