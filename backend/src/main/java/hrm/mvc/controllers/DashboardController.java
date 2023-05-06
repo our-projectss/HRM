@@ -3,6 +3,7 @@ package hrm.mvc.controllers;
 import hrm.entity.User;
 import hrm.mvc.services.AppService;
 import hrm.repositories.UserRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,9 @@ public class DashboardController {
             return "redirect:/login";
         }
         model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users2", userRepository.findAll());
         model.addAttribute("currentUser",user);
+        model.addAttribute("userForm",new User());
         return "home";
     }
   	@GetMapping("/delete/{id}")
@@ -40,5 +43,18 @@ public class DashboardController {
   		userRepository.deleteById(id);
   		return "redirect:/";
   	}
+  	@PostMapping("/create-user")
+	public String saveStudent(@ModelAttribute("user") User user) {
+		userRepository.save(user);
+		return "redirect:/";
+	}
+  	@PostMapping("/update-user/{id}")
+  	public String updateUser(@PathVariable Long id, @ModelAttribute("user") User user) {
+  		user.setId(id);
+  		System.out.println(user);
+  		userRepository.save(user);
+  		return "redirect:/";
+  	}
+ }
 	
-}
+

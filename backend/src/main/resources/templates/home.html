@@ -30,9 +30,9 @@
 					</div>
 					<div>
 						<div class="dropdown">
-							<span class="current-user__name">Trần Thế</span>
+							<span class="current-user__name" th:text="${currentUser.name}"></span>
 							<button class="btn btn-secondary cover-avatar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img class="avatar" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" >
+								<img class="avatar" th:src="${currentUser.avatar}" alt="" >
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 								<a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
@@ -66,12 +66,77 @@
 						                <button type="button" class="close" data-dismiss="modal">&times;</button>
 						            </div>
 						            <div class="modal-body">										
-						                <p>Are you sure you want to delete?.</p>
+						                <form th:action="@{/create-user}" th:object = "${userForm}" method="POST">
+											<div class ="form-group">
+												<label> URL Avatar </label>
+													<input
+													type = "text"
+													name = "avatar"
+													th:field = "*{avatar}"
+													class = "form-control"
+													placeholder="Enter Url Avatar" 
+													/>
+											</div>
+											<div class ="form-group">
+												<label> User Name</label>
+													<input
+													min=5 
+													type = "text"
+													name = "name"
+													th:field = "*{name}"
+													class = "form-control"
+													placeholder="Enter User Name" 
+													/>
+											</div>
+											<div class ="form-group">
+												<label> User Email </label>
+													<input
+													type = "text"
+													name = "email"
+													th:field = "*{email}"
+													class = "form-control"
+													placeholder="Enter User Email" 
+													/>
+											</div>
+											<div class ="form-group">
+												<label> User Password </label>
+													<input
+													min=5 
+													type = "text"
+													name = "password"
+													th:field = "*{password}"
+													class = "form-control"
+													placeholder="Enter User Password" 
+													/>
+											</div>
+											<div class ="form-group">
+												<label> User Salary </label>
+													<input
+													type = "text"
+													name = "salary"
+													th:field = "*{salary}"
+													class = "form-control"
+													placeholder="Enter User Salary" 
+													/>
+											</div>
+											<div class ="form-group">
+												<label> User Type </label>
+													<input
+													type = "text"
+													name = "type"
+													th:field = "*{type}"
+													class = "form-control"
+													placeholder="Enter User Type" 
+													/>
+											</div>
+											<div class="modal-footer">
+								                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								                <button type="submit" class = "btn btn-primary">Create User</button>										              
+							            	</div>
+						            	</form>
 						            </div>
-						            <div class="modal-footer">
-						                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						                <a href="" class = "btn btn-primary">Create User</a>										              
-						            </div>
+						            
+						            
 						        </div>
 						   	 </div>
 						</div>
@@ -110,14 +175,9 @@
 	                                
 	                                
 	                                <td  class="text-center" style="width: 20%;" >
-	                                    <a href="#" class="table-link" >
-	                                        <span class="fa-stack">
-	                                            <i class="fa fa-square fa-stack-2x"></i>
-	                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-	                                        </span>
-	                                    </a>
 	                                    
-	                                    <a href="#" class="table-link" >
+	                                  
+	                                    <a href="#" class="table-link" data-toggle="modal" th:data-target="'#editModal'+${user.id}" >
 	                                        <span class="fa-stack">
 	                                            <i class="fa fa-square fa-stack-2x"></i>
 	                                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
@@ -131,6 +191,98 @@
 	                                        </span>
 	                                    </a>	                       
 	                                </td>
+	                               
+	                                <div th:id="'editModal'+${user.id}" class="modal fade" role="dialog">
+											<div class="modal-dialog">
+										        <div class="modal-content">
+										            <div class="modal-header">
+										                <h4 class="modal-title">Edit Modal</h4>
+										                <button type="button" class="close" data-dismiss="modal">&times;</button>
+										            </div>
+										            
+										            <div class="modal-body">
+														<p th:text ="${user.id}"></p>
+														<form th:action="@{/update-user/{id}(id=${user.id})}" th:object = "${userForm}" method="POST">
+															<div class ="form-group">
+																	
+																<label> URL Avatar </label>
+																	<input
+																	type = "text"
+																	name = "avatar"
+																	th:field = "*{avatar}"
+																	class = "form-control"
+																	placeholder="Enter Url Avatar" 
+																	/>
+															</div>
+															<div class ="form-group">
+																<label> User Name</label>
+																	<input																	
+																	type = "text"
+																	name = "name"
+																	th:field = "*{name}"
+																	class = "form-control"
+																	placeholder="Enter User Name" 
+																	/>
+															</div>
+															<div class ="form-group">
+																<label> User Email </label>
+																	<input
+																	type = "text"
+																	name = "email"
+																	th:field = "*{email}"
+																	class = "form-control"
+																	placeholder="Enter User Email" 
+																	/>
+															</div>
+															<div class ="form-group">
+																<label> User Password </label>
+																	<input
+																	min=5 
+																	type = "text"
+																	name = "password"
+																	th:field = "*{password}"
+																	class = "form-control"
+																	placeholder="Enter User Password" 
+																	/>
+															</div>
+															<div class ="form-group">
+																<label> User Salary </label>
+																	<input
+																	type = "text"
+																	name = "salary"
+																	th:field = "*{salary}"
+																	class = "form-control"
+																	placeholder="Enter User Salary" 
+																	/>
+															</div>
+															<div class ="form-group">
+																<label> User Type </label>
+																	<input
+																	type = "text"
+																	name = "type"
+																	th:field = "*{type}"
+																	class = "form-control"
+																	placeholder="Enter User Type" 
+																	/>
+															</div> 
+															<div class="modal-footer">
+																<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																<button type="submit" class = "btn btn-danger">Confirm </a>																
+															</div>
+														</form>
+										            </div>										           										           								              										            
+										        </div>
+										    </div>
+									</div>
+									<script>
+									    $(document).ready(function() {
+									        $(".table-link").click(function() {
+												var id="#editModal"+user.id;									
+									            $(id).modal();
+									        });
+									    });
+									</script>
+									<!-- -->
 	                                <div th:id="'deleteModal'+${user.id}" class="modal fade" role="dialog">
 										    <div class="modal-dialog">
 										        <div class="modal-content">
@@ -139,7 +291,6 @@
 										                <button type="button" class="close" data-dismiss="modal">&times;</button>
 										            </div>
 										            <div class="modal-body">
-														<p th:text="${user.id}"></p>
 										                <p >Are you sure you want to delete?.</p>
 										            </div>
 										            <div class="modal-footer">
