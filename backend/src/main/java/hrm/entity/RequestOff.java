@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
 import java.sql.Date;
 
 @Data
@@ -14,14 +16,22 @@ public class RequestOff {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
-
-	private Long user_id;
-
+	
+	@NotNull
+	private Long userId;
+	
+	@NotNull
 	private String status; // reject, approved, pending
 
-	private Long approved_by;
+	@NotNull
+	private Long approvedBy;
 
-	private Date day_off;
+	@NotNull
+	private Date dayOff;
 
+	@NotNull
 	private String shift; // morning, afternoon, fullday
+	
+	@NotNull
+	private String reason; 
 }

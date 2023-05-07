@@ -22,6 +22,11 @@ public class RequestOffControllerV2 {
     public Iterable<RequestOff> getAll() {
         return requestOffRepository.findAll();
     }
+    
+    @GetMapping({"/{id}"})
+    public RequestOff getRequestOff(@PathVariable Long id) {
+    	return requestOffRepository.findById(id).get();
+    }
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)

@@ -1,9 +1,20 @@
 package hrm.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import java.sql.Date;
+import java.util.List;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import hrm.entity.Daily;
 import hrm.entity.RequestOff;
+import hrm.entity.User;
+
 
 public interface RequestOffRepository extends CrudRepository<RequestOff, Long> {
-	
+	List<RequestOff> findByUserId(Long userId);
+
+	List<RequestOff> findByUserIdAndDayOffBetween(Long userId, Date startTime, Date endTime);
+
+	List<RequestOff> findByDayOffBetween(Date startTime, Date endTime);
 }
