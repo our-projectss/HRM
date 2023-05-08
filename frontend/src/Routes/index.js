@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../Features/Login/Login";
 import Dashboard from "../Features/Dashboard/Dashboard";
-import Checkin from "../Features/Dashboard/Checkin/Checkin"
+import Profile from "../Features/Dashboard/Profile/Profile"
+import MyTimesheets from "../Features/Dashboard/MyTimesheets/MyTimesheets"
+import MyRequestOff from "../Features/Dashboard/MyRequestOff/MyRequestOff"
+import Error from "../Features/Error/Error";
 
 export const router = createBrowserRouter([
   {
@@ -9,8 +12,16 @@ export const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "checkin",
-        element: <Checkin />
+        path: "",
+        element: <MyTimesheets />
+      },
+      {
+        path: "profile",
+        element: <Profile />
+      },
+      {
+        path: "my-request-off",
+        element: <MyRequestOff />
       },
     ],
   },
@@ -19,7 +30,7 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/register",
-    element: <Login />,
+    path: "*",
+    element: <Error />,
   }
 ]);

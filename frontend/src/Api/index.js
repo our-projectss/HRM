@@ -1,13 +1,14 @@
 import axios from "axios";
-import { getAccessToken } from "utils/localStorage";
+import { getAccessToken } from "../utils/localStorage";
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   timeout: 25000,
   headers: {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*"
   },
-  withCredentials: true,
+  withCredentials: false,
 });
 
 axiosInstance.interceptors.request.use((request) => {
