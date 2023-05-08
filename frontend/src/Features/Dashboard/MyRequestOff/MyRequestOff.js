@@ -15,7 +15,7 @@ const defaultRequestForm = {
   dayOff: "",
   reason: "",
   shift: "fullday",
-  userId: user.id,
+  userId: user?.id,
   status: "pending",
 } 
 
@@ -33,7 +33,7 @@ export default function MyRequestOff() {
       try {
         const res = await axiosInstance.get("/api/request-off", {
           params: {
-            userId: user.id
+            userId: user?.id
           }
         });
 
