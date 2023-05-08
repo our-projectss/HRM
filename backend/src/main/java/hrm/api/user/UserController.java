@@ -23,6 +23,11 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    @GetMapping({"/{id}"})
+    public User getUserDetail(@PathVariable Long id) {
+        return userRepository.findById(id).get();
+    }
+
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user) {

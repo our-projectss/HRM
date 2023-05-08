@@ -23,7 +23,6 @@ public class RequestOff {
 	@NotNull
 	private String status; // reject, approved, pending
 
-	@NotNull
 	private Long approvedBy;
 
 	@NotNull
@@ -31,7 +30,6 @@ public class RequestOff {
 
 	@NotNull
 	private String shift; // morning, afternoon, fullday
-	
-	@NotNull
+
 	private String reason; 
 }

@@ -1,5 +1,6 @@
 package hrm.api.requestoff;
 
+import hrm.api.daily.models.DailyRequest;
 import hrm.entity.RequestOff;
 import hrm.repositories.RequestOffRepository;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,11 @@ public class RequestOffControllerV2 {
     }
 
     @GetMapping
-    public Iterable<RequestOff> getAll() {
+    public Iterable<RequestOff> getAll(@RequestParam Long userId) {
+        if (userId != null) {
+            return requestOffRepository.findByUserId(userId);
+        }
+
         return requestOffRepository.findAll();
     }
     
