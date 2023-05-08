@@ -20,23 +20,9 @@ public class DailyController {
     }
 
     @GetMapping
-    public Iterable<Daily> getDaily(@RequestBody DailyRequest dailyRequest) {
-        if (dailyRequest.hasUserId()) {
-            if (dailyRequest.hasTime()) {
-                return dailyRepository.findByUserIdAndDayBetween(
-                        dailyRequest.getUserId(),
-                        dailyRequest.getStartTime(),
-                        dailyRequest.getEndTime()
-                );
-            }
-            return dailyRepository.findByUserId(dailyRequest.getUserId());
-        }
-
-        if (dailyRequest.hasTime()) {
-            return dailyRepository.findByDayBetween(
-                    dailyRequest.getStartTime(),
-                    dailyRequest.getEndTime()
-            );
+    public Iterable<Daily> getDaily(@RequestParam Long userId) {
+        if (userId != null) {
+            return dailyRepository.findByUserId(userId);
         }
 
         return dailyRepository.findAll();

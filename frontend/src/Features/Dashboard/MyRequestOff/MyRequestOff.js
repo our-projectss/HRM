@@ -1,12 +1,12 @@
-import { Backdrop, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, MenuItem, Modal, Select, TextField } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import React, { useEffect, useState } from 'react'
-import moment, { now } from 'moment'
+import { Backdrop, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, MenuItem, Select, TextField } from '@mui/material';
+import moment, { now } from 'moment';
+import React, { useEffect, useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "./MyRequestOff.css"
 import axiosInstance from '../../../Api';
 import { getUser } from '../../../utils/localStorage';
+import "./MyRequestOff.css";
 
 const localizer = momentLocalizer(moment)
 
@@ -60,12 +60,14 @@ export default function MyRequestOff() {
   }
 
   const handleClickADay = (e) => {
-    const requestOff = getRequestOff(e.start)
+    if (!e || !e?.start) return
+
+    const requestOff = getRequestOff(e?.start)
     if (requestOff) {
       setRequestForm(requestOff)
     }
 
-    if (moment(e.start) <= now() && !requestOff) {
+    if (e?.start && moment(e.start) <= now() && !requestOff) {
       return;
     }
 
