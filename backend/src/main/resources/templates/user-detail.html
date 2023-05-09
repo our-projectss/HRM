@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style/home.css}"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container-xl px-4 mt-4">
+	    <!-- Account page navigation-->
+	   <div>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div class="container">
+					<div class="cover-logo">
+						<h1 class="logo">ADMIN</h1>
+					</div>
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav">
+							<li class="nav-item active">
+								<a class="nav-link" href="http://localhost:8080/"><i class="fa fa-user" aria-hidden="true"></i> Users <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="http://localhost:8080/request-off"><i class="fa fa-calendar" aria-hidden="true"></i> Request off</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#"><i class="fa fa-pie-chart" aria-hidden="true"></i> Statistical</a>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<div class="dropdown">
+							<span class="current-user__name" th:text="${currentUser.name}"></span>
+							<button class="btn btn-secondary cover-avatar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img class="avatar" th:src="${currentUser.avatar}" alt="" >
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+								<a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+	</div>
+	    <hr class="mt-0 mb-4">
+	    <div class="row">
+	        <div class="col-xl-4">
+	            <!-- Profile picture card-->
+	            <div class="card mb-4 mb-xl-0">
+	                <div class="card-header">Profile Picture</div>
+	                <div class="card-body text-center">
+	                    <!-- Profile picture image-->
+	                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+	                    <!-- Profile picture help block-->
+	                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+	                    <!-- Profile picture upload button-->
+	                    <button class="btn btn-primary" type="button">Upload new image</button>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="col-xl-8">
+	            <!-- Account details card-->
+	            <div class="card mb-4">
+	                <div class="card-header">Account Details</div>
+	                <div class="card-body">
+	                    <form>
+	                        <!-- Form Group (username)-->
+	                        <div class="mb-3">
+	                            <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
+	                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
+	                        </div>
+	                        <!-- Form Row-->
+	                        <div class="row gx-3 mb-3">
+	                            <!-- Form Group (first name)-->
+	                            <div class="col-md-6">
+	                                <label class="small mb-1" for="inputFirstName">First name</label>
+	                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
+	                            </div>
+	                            <!-- Form Group (last name)-->
+	                            <div class="col-md-6">
+	                                <label class="small mb-1" for="inputLastName">Last name</label>
+	                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
+	                            </div>
+	                        </div>
+	                        <!-- Form Row        -->
+	                        <div class="row gx-3 mb-3">
+	                            <!-- Form Group (organization name)-->
+	                            <div class="col-md-6">
+	                                <label class="small mb-1" for="inputOrgName">Organization name</label>
+	                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+	                            </div>
+	                            <!-- Form Group (location)-->
+	                            <div class="col-md-6">
+	                                <label class="small mb-1" for="inputLocation">Location</label>
+	                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
+	                            </div>
+	                        </div>
+	                        <!-- Form Group (email address)-->
+	                        <div class="mb-3">
+	                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
+	                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
+	                        </div>
+	                        <!-- Form Row-->
+	                        <div class="row gx-3 mb-3">
+	                            <!-- Form Group (phone number)-->
+	                            <div class="col-md-6">
+	                                <label class="small mb-1" for="inputPhone">Phone number</label>
+	                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
+	                            </div>
+	                            <!-- Form Group (birthday)-->
+	                            <div class="col-md-6">
+	                                <label class="small mb-1" for="inputBirthday">Birthday</label>
+	                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+	                            </div>
+	                        </div>
+	                        <!-- Save changes button-->
+	                        <button class="btn btn-primary" type="button">Save changes</button>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

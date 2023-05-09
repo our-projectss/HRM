@@ -18,10 +18,10 @@
 					<div class="collapse navbar-collapse" id="navbarNavDropdown">
 						<ul class="navbar-nav">
 							<li class="nav-item active">
-								<a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i> Users <span class="sr-only">(current)</span></a>
+								<a class="nav-link" href="http://localhost:8080/"><i class="fa fa-user" aria-hidden="true"></i> Users <span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> Request off</a>
+								<a class="nav-link" href="http://localhost:8080/request-off"><i class="fa fa-calendar" aria-hidden="true"></i> Request off</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#"><i class="fa fa-pie-chart" aria-hidden="true"></i> Statistical</a>
@@ -166,7 +166,7 @@
 	                            <tr th:each="user:${users}">
 	                                <td>
 	                                    <img th:src="${user.avatar}" alt="">
-	                                    <a href="#" class="user-link" th:text="${user.name}"></a>	                                    
+	                                    <a th:href="@{/user-detail/{id}(id=${user.id})}" class="user-link" th:text="${user.name}"></a>	                                    
 	                                    <span class="user-esubhead" th:text="${user.type}"></span>
 	                                </td>
 	                                <td class="text-center" th:text="${user.email}"></td>

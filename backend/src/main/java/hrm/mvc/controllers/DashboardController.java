@@ -55,6 +55,10 @@ public class DashboardController {
   		userRepository.save(user);
   		return "redirect:/";
   	}
+  	@GetMapping("/user-detail/{id}")
+  	public String detailUser() {
+  		return "user-detail";
+  	}
  }
 	
 
