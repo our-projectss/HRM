@@ -58,7 +58,7 @@ public class RequestOffController {
         List <RequestOff> requestOffs = requestOffRepository.findByDayOffBetween(startTime, endTime);
         List<RequestOffUser> list=new ArrayList<RequestOffUser>();
         for(RequestOff item : requestOffs) {
-            list.add(new RequestOffUser(item,userRepository.findById(item.getUserId()).get()) );
+            list.add(new RequestOffUser(item,userRepository.findById(item.getUserId()).get()));
         }
         model.addAttribute("requestOffUsers", list);
         model.addAttribute("currentUser",user);
