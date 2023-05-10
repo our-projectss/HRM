@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Request-off</title>
+    <title>Statistical</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/style/request-off.css}"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -30,10 +30,10 @@
 					</div>
 					<div>
 						<div class="dropdown">
-							<!-- <span class="current-user__name" th:text="${currentUser.name}"></span>
+							<span class="current-user__name" th:text="${currentUser.name}"></span>
 							<button class="btn btn-secondary cover-avatar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<img class="avatar" th:src="${currentUser.avatar}" alt="" >
-							</button> -->
+							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 								<a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
 								<a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-lg-12">
 				<div class="container_title">
-					<h2 class="title-page">Request off management</h2>
+					<h2 class="title-page">Salary Statistical</h2>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
@@ -60,32 +60,25 @@
                             <thead>
                             <tr>
                                 <th class="text-center"><span>User</span></th>
-                                <th class="text-center"><span>Day off</span></th>
-                                <th class="text-center"><span>Reason</span></th>  
-                                <th class="text-center"><span>Status</span></th>                             
-                                <th class="text-center"><span>Actions</span></th>
+                                <th class="text-center"><span>Email</span></th>                                
+                                <th class="text-center"><span>Salary</span></th>                                                            
                             </tr>
                             </thead>
                             <tbody class="tbody">
-	                            <tr th:each="requestOffUser:${requestOffUsers}">
+	                            <tr th:each="user:${users}">
 	                                <td>
-	                                    <img th:src="${requestOffUser.user.avatar}" alt="">
-	                                    <a href="#" class="user-link" th:text="${requestOffUser.user.name}"></a>	                                    
-	                                    <span class="user-esubhead" th:text="${requestOffUser.user.type}"></span>
-	                                </td>
-	                                <td class="text-center" th:text="${requestOffUser.requestOff.dayOff + ' - ' + requestOffUser.requestOff.shift}">										
-									</td>	                                	                                
-	                                <td class="text-center" th:text="${requestOffUser.requestOff.reason}"></td>
-	                                <td class="text-center" th:text="${requestOffUser.requestOff.status}"></td>
-	                                <td  class="text-center" style="width: 20%;">	                                    
-	                                    <a th:href = "@{/approved/{id}(id=${requestOffUser.user.id})}" type="button" class="btn-success btn" th:if="${requestOffUser.requestOff.status=='pending'}" >
-  											Approved
-										</a>	
-										<a th:href = "@{/reject/{id}(id=${requestOffUser.user.id})}" type="button" class="btn-danger btn" th:if="${requestOffUser.requestOff.status!='reject'}">
-  											Reject
-										</a>										
-	                                </td>
+	                                    <img th:src="${user.avatar}" alt="">
+	                                    <a href="#" class="user-link" th:text="${user.name}"></a>	                                    
+	                                    <span class="user-esubhead" th:text="${user.type}"></span>
+	                                </td>	                                
+	                                <td class="text-center" th:text="${user.email}"></td>
+	                                <td class="text-center" th:text="${user.salary}"> </td>                            
 	                            </tr>
+	                            <tr>
+									<td class="text-center">Total</td>
+									<td></td>
+									<td class="text-center">10000000</td>
+								</tr>
                             </tbody>
                         </table>
                     </div>

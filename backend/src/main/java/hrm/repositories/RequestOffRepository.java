@@ -4,12 +4,11 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import hrm.entity.Daily;
 import hrm.entity.RequestOff;
 import hrm.entity.User;
-
+import org.springframework.stereotype.Repository;
 
 public interface RequestOffRepository extends CrudRepository<RequestOff, Long> {
 	List<RequestOff> findByUserId(Long userId);
