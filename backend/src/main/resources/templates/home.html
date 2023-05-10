@@ -21,7 +21,7 @@
 								<a class="nav-link" href="http://localhost:8080/"><i class="fa fa-user" aria-hidden="true"></i> Users <span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="http://localhost:8080/request-off"><i class="fa fa-calendar" aria-hidden="true"></i> Request off</a>
+								<a class="nav-link" href="/request-off"><i class="fa fa-calendar" aria-hidden="true"></i> Request off</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#"><i class="fa fa-pie-chart" aria-hidden="true"></i> Statistical</a>
@@ -35,8 +35,8 @@
 								<img class="avatar" th:src="${currentUser.avatar}" alt="" >
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
-								<a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
+								<a class="dropdown-item" href="/login"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+								<a class="dropdown-item" th:href="@{/user-detail/{id}(id=${currentUser.id})}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
 							</div>
 						</div>
 					</div>
@@ -191,89 +191,91 @@
 	                                        </span>
 	                                    </a>	                       
 	                                </td>
-	                               
-	                                <div th:id="'editModal'+${user.id}" class="modal fade" role="dialog">
-											<div class="modal-dialog">
-										        <div class="modal-content">
-										            <div class="modal-header">
-										                <h4 class="modal-title">Edit Modal</h4>
-										                <button type="button" class="close" data-dismiss="modal">&times;</button>
-										            </div>
-										            
-										            <div class="modal-body">
-														<p th:text ="${user.id}"></p>
-														<form th:action="@{/update-user/{id}(id=${user.id})}" th:object = "${userForm}" method="POST">
-															<div class ="form-group">
-																	
-																<label> URL Avatar </label>
-																	<input
-																	type = "text"
-																	name = "avatar"
-																	th:field = "*{avatar}"
-																	class = "form-control"
-																	placeholder="Enter Url Avatar" 
-																	/>
-															</div>
-															<div class ="form-group">
-																<label> User Name</label>
-																	<input																	
-																	type = "text"
-																	name = "name"
-																	th:field = "*{name}"
-																	class = "form-control"
-																	placeholder="Enter User Name" 
-																	/>
-															</div>
-															<div class ="form-group">
-																<label> User Email </label>
-																	<input
-																	type = "text"
-																	name = "email"
-																	th:field = "*{email}"
-																	class = "form-control"
-																	placeholder="Enter User Email" 
-																	/>
-															</div>
-															<div class ="form-group">
-																<label> User Password </label>
-																	<input
-																	min=5 
-																	type = "text"
-																	name = "password"
-																	th:field = "*{password}"
-																	class = "form-control"
-																	placeholder="Enter User Password" 
-																	/>
-															</div>
-															<div class ="form-group">
-																<label> User Salary </label>
-																	<input
-																	type = "text"
-																	name = "salary"
-																	th:field = "*{salary}"
-																	class = "form-control"
-																	placeholder="Enter User Salary" 
-																	/>
-															</div>
-															<div class ="form-group">
-																<label> User Type </label>
-																	<input
-																	type = "text"
-																	name = "type"
-																	th:field = "*{type}"
-																	class = "form-control"
-																	placeholder="Enter User Type" 
-																	/>
-															</div> 
-															<div class="modal-footer">
-																<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																<button type="submit" class = "btn btn-danger">Confirm </a>																
-															</div>
-														</form>
-										            </div>										           										           								              										            
-										        </div>
-										    </div>
-									</div>
+	                               <div th:if="${user.type=='user' || user.id==currentUser.id}">
+									   
+		                                <div th:id="'editModal'+${user.id}" class="modal fade" role="dialog">
+												<div class="modal-dialog">
+											        <div class="modal-content">
+											            <div class="modal-header">
+											                <h4 class="modal-title">Edit User</h4>
+											                <button type="button" class="close" data-dismiss="modal">&times;</button>
+											            </div>
+											            
+											            <div class="modal-body">
+															<p th:text ="${user.id}"></p>
+															<form th:action="@{/update-user/{id}(id=${user.id})}" th:object = "${userForm}" method="POST">
+																<div class ="form-group">
+																		
+																	<label> URL Avatar </label>
+																		<input
+																		type = "text"
+																		name = "avatar"
+																		th:field = "*{avatar}"
+																		class = "form-control"
+																		placeholder="Enter Url Avatar" 
+																		/>
+																</div>
+																<div class ="form-group">
+																	<label> User Name</label>
+																		<input																	
+																		type = "text"
+																		name = "name"
+																		th:field = "*{name}"
+																		class = "form-control"
+																		placeholder="Enter User Name" 
+																		/>
+																</div>
+																<div class ="form-group">
+																	<label> User Email </label>
+																		<input
+																		type = "text"
+																		name = "email"
+																		th:field = "*{email}"
+																		class = "form-control"
+																		placeholder="Enter User Email" 
+																		/>
+																</div>
+																<div class ="form-group">
+																	<label> User Password </label>
+																		<input
+																		min=5 
+																		type = "text"
+																		name = "password"
+																		th:field = "*{password}"
+																		class = "form-control"
+																		placeholder="Enter User Password" 
+																		/>
+																</div>
+																<div class ="form-group">
+																	<label> User Salary </label>
+																		<input
+																		type = "text"
+																		name = "salary"
+																		th:field = "*{salary}"
+																		class = "form-control"
+																		placeholder="Enter User Salary" 
+																		/>
+																</div>
+																<div class ="form-group">
+																	<label> User Type </label>
+																		<input
+																		type = "text"
+																		name = "type"
+																		th:field = "*{type}"
+																		class = "form-control"
+																		placeholder="Enter User Type" 
+																		/>
+																</div> 
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																	<button type="submit" class = "btn btn-danger">Confirm </a>																
+																</div>
+															</form>
+											            </div>										           										           								              										            
+											        </div>
+											    </div>
+										</div>
+	                               </div>
 									<script>
 									    $(document).ready(function() {
 									        $(".table-link").click(function() {
@@ -283,23 +285,25 @@
 									    });
 									</script>
 									<!-- -->
-	                                <div th:id="'deleteModal'+${user.id}" class="modal fade" role="dialog">
-										    <div class="modal-dialog">
-										        <div class="modal-content">
-										            <div class="modal-header">
-										                <h4 class="modal-title">Delete Modal</h4>
-										                <button type="button" class="close" data-dismiss="modal">&times;</button>
-										            </div>
-										            <div class="modal-body">
-										                <p >Are you sure you want to delete?.</p>
-										            </div>
-										            <div class="modal-footer">
-										                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										                <a th:href = "@{/delete/{id}(id=${user.id})}" class = "btn btn-danger">Delete</a>										              
-										            </div>
-										        </div>
-										    </div>
-									</div>
+									 <div th:if="${user.type=='user'}">
+		                                <div th:id="'deleteModal'+${user.id}" class="modal fade" role="dialog">
+											    <div class="modal-dialog">
+											        <div class="modal-content">
+											            <div class="modal-header">
+											                <h4 class="modal-title">Delete User?</h4>
+											                <button type="button" class="close" data-dismiss="modal">&times;</button>
+											            </div>
+											            <div class="modal-body">
+											                <p >Are you sure you want to delete?.</p>
+											            </div>
+											            <div class="modal-footer">
+											                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											                <a th:href = "@{/delete/{id}(id=${user.id})}" class = "btn btn-danger">Delete</a>										              
+											            </div>
+											        </div>
+											    </div>
+										</div>
+									 </div>
 	                                <script>
 									    $(document).ready(function() {
 									        $(".table-link").click(function() {
