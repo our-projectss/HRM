@@ -23,10 +23,11 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axiosInstance.get("/api/users/9");
+      const res = await axiosInstance.post("/api/login", {
+        email, password
+      });
       
       if (res) {
-        console.log(res.data)
         setUser(res.data);
         toast.success("Login success!")
         navigate("../")
