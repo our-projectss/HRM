@@ -56,10 +56,12 @@ public class DashboardController {
   		return "redirect:/";
   	}
   	@GetMapping("/user-detail/{id}")
-  	public String detailUser(Model model ) {
+  	public String detailUser(@PathVariable Long id,Model model ) {
   		Long currentAdminId = this.appService.getCurrentAdminId();
   		User user = userRepository.findById(currentAdminId).get();
+  		User userid=userRepository.findById(id).get();
   		model.addAttribute("currentUser",user);
+  		model.addAttribute("userid",userid);
   		return "user-detail";
   	}
  }

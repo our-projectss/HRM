@@ -37,8 +37,8 @@
 								<img class="avatar" th:src="${currentUser.avatar}" alt="" >
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
-								<a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
+								<a class="dropdown-item" href="/login"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+								<a class="dropdown-item" th:href="@{/user-detail/{id}(id=${currentUser.id})}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
 							</div>
 						</div>
 					</div>
@@ -67,15 +67,15 @@
 	                    <form>
 	                        <!-- Form Group (username)-->
 	                        <div class="mb-3">
-	                            <label class="big mb-1" for="name"><b>Username (how your name will appear to other users on the site)</b></label>
-	                            <input class="form-control" id="name" type="text" disabled="disabled" placeholder="Enter your fullname" value="my fullname">
+	                            <label class="big mb-1" for="name"><b>FullName</b></label>
+	                            <input class="form-control" id="name" type="text" disabled="disabled" placeholder="Enter your fullname" th:value=${userid.name}>
 	                        </div>
 	                        <!-- Form Row-->
 	                        <div class="row gx-3 mb-3">
 	                            <!-- Form Group (first name)-->
 	                            <div class="col-md-6">
 	                                <label class="big mb-1" for="email"><b>Email</b></label>
-	                                <input class="form-control" id="email" type="email" disabled="disabled" placeholder="Enter your email" value="Valerie@xyz.com">
+	                                <input class="form-control" id="email" type="email" disabled="disabled" placeholder="Enter your email" th:value=${userid.email}>
 	                            </div>
 	                            <!-- Form Group (last name)-->
 	                            <div class="col-md-6">
@@ -90,16 +90,15 @@
 	                            <!-- Form Group (phone number)-->
 	                            <div class="col-md-6">
 	                                <label class="big mb-1" for="salary"><b>Salary</b></label>
-	                                <input class="form-control" id="salary" type="tel" disabled="disabled" placeholder="Enter your salary" value="555123567">
+	                                <input class="form-control" id="salary" type="tel" disabled="disabled" placeholder="Enter your salary" th:value=${userid.salary}>
 	                            </div>
 	                            <!-- Form Group (birthday)-->
 	                            <div class="col-md-6">
 	                                <label class="big mb-1" for="type"><b>Type</b></label>
-	                                <input class="form-control" id="type" type="text"  disabled="disabled" placeholder="Enter your type" value="admin">
+	                                <input class="form-control" id="type" type="text"  disabled="disabled" placeholder="Enter your type" th:value=${userid.type}>
 	                            </div>
 	                        </div>
-	                        <!-- Save changes button-->
-	                        <button class="btn btn-primary" type="button">Save changes</button>
+	                        
 	                    </form>
 	                </div>
 	            </div>
