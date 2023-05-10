@@ -35,8 +35,8 @@
 								<img class="avatar" th:src="${currentUser.avatar}" alt="" >
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
-								<a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
+								<a class="dropdown-item" href="/login"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+								<a class="dropdown-item" th:href="@{/user-detail/{id}(id=${currentUser.id})}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
 							</div>
 						</div>
 					</div>
@@ -77,7 +77,7 @@
 	                            <tr>
 									<td class="text-center">Total</td>
 									<td></td>
-									<td class="text-center">10000000</td>
+									<td class="text-center" th:text="${totalSalary}"></td>
 								</tr>
                             </tbody>
                         </table>

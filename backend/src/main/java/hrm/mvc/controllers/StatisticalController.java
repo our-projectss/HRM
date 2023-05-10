@@ -4,7 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import hrm.entity.RequestOff;
 import hrm.entity.User;
+import hrm.mvc.models.RequestOffUser;
 import hrm.mvc.services.AppService;
 import hrm.repositories.UserRepository;
 
@@ -28,8 +31,14 @@ public class StatisticalController {
         if (user == null) {
             return "redirect:/login";
         }
-        model.addAttribute("users", userRepository.findAll());
+        long totalSalary = 0;
+        Iterable<User> users = userRepository.findAll();
+        for(User item : users) {
+        	totalSalary += item.getSalary();
+        }
+        model.addAttribute("users", users);
         model.addAttribute("currentUser",user);
+        model.addAttribute("totalSalary",totalSalary);
         return "statistical";
     }
 }
