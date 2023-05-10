@@ -17,10 +17,10 @@
 					</div>
 					<div class="collapse navbar-collapse" id="navbarNavDropdown">
 						<ul class="navbar-nav">
-							<li class="nav-item active">
+							<li class="nav-item">
 								<a class="nav-link" href="http://localhost:8080/"><i class="fa fa-user" aria-hidden="true"></i> Users <span class="sr-only">(current)</span></a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item active">
 								<a class="nav-link" href="http://localhost:8080/request-off"><i class="fa fa-calendar" aria-hidden="true"></i> Request off</a>
 							</li>
 							<li class="nav-item">
@@ -70,7 +70,7 @@
 	                            <tr th:each="requestOffUser:${requestOffUsers}">
 	                                <td>
 	                                    <img th:src="${requestOffUser.user.avatar}" alt="">
-	                                    <a href="#" class="user-link" th:text="${requestOffUser.user.name}"></a>	                                    
+	                                    <a th:href="@{/user-detail/{id}(id=${requestOffUser.user.id})}" class="user-link" th:text="${requestOffUser.user.name}"></a>
 	                                    <span class="user-esubhead" th:text="${requestOffUser.user.type}"></span>
 	                                </td>
 	                                <td class="text-center" th:text="${requestOffUser.requestOff.dayOff + ' - ' + requestOffUser.requestOff.shift}">										
@@ -78,10 +78,10 @@
 	                                <td class="text-center" th:text="${requestOffUser.requestOff.reason}"></td>
 	                                <td class="text-center" th:text="${requestOffUser.requestOff.status}"></td>
 	                                <td  class="text-center" style="width: 20%;">	                                    
-	                                    <a th:href = "@{/approved/{id}(id=${requestOffUser.user.id})}" type="button" class="btn-success btn" th:if="${requestOffUser.requestOff.status=='pending'}" >
+	                                    <a th:href = "@{/approved/{id}(id=${requestOffUser.requestOff.id})}" type="button" class="btn-success btn" th:if="${requestOffUser.requestOff.status=='pending'}" >
   											Approved
 										</a>	
-										<a th:href = "@{/reject/{id}(id=${requestOffUser.user.id})}" type="button" class="btn-danger btn" th:if="${requestOffUser.requestOff.status!='reject'}">
+										<a th:href = "@{/reject/{id}(id=${requestOffUser.requestOff.id})}" type="button" class="btn-danger btn" th:if="${requestOffUser.requestOff.status!='reject'}">
   											Reject
 										</a>										
 	                                </td>
