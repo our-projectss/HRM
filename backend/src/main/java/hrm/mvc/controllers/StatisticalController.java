@@ -32,4 +32,5 @@ public class StatisticalController {
         model.addAttribute("currentUser",user);
         return "statistical";
     }
+    
 }
