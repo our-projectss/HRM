@@ -35,7 +35,7 @@
 								<img class="avatar" th:src="${currentUser.avatar}" alt="" >
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="/login"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+								<a class="dropdown-item" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
 								<a class="dropdown-item" th:href="@{/user-detail/{id}(id=${currentUser.id})}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
 							</div>
 						</div>
@@ -203,7 +203,6 @@
 											            <div class="modal-body">
 															<form th:action="@{/update-user/{id}(id=${user.id})}" th:object = "${userForm}" method="POST">
 																<div class ="form-group">
-																		
 																	<label> URL Avatar </label>
 																		<input
 																		type = "text"

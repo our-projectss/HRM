@@ -31,6 +31,7 @@ export default function Login() {
         setUser(res.data);
         toast.success("Login success!")
         navigate("../")
+        window.location.reload();
       } else {
         toast.error("Invalid email or password!")
       }

@@ -34,8 +34,8 @@ public class DashboardController {
         }
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("users2", userRepository.findAll());
-        model.addAttribute("currentUser",user);
-        model.addAttribute("userForm",new User());
+        model.addAttribute("currentUser", user);
+				model.addAttribute("userForm", new User());
         return "home";
     }
   	@GetMapping("/delete/{id}")
@@ -43,6 +43,13 @@ public class DashboardController {
   		userRepository.deleteById(id);
   		return "redirect:/";
   	}
+
+	@GetMapping("/logout")
+	public String logoutUser() {
+		this.appService.setCurrentAdminId(null);
+		return "redirect:/login";
+	}
+
   	@PostMapping("/create-user")
 	public String saveStudent(@ModelAttribute("user") User user) {
 		userRepository.save(user);
